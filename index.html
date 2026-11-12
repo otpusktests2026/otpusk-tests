@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Развлекательные тесты о путешествиях от «Отпуск вам к лицу».">
+  <title>Отпуск вам к лицу — тесты о путешествиях</title>
+  <style>
+    :root{--ink:#183b3a;--muted:#58716d;--sea:#167f78;--sea2:#dff2ed;--sand:#fffaf0;--line:#e5e9e3}
+    *{box-sizing:border-box} body{margin:0;background:var(--sand);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+    a{color:inherit} .wrap{max-width:980px;margin:auto;padding:22px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0}
+    .brand{font-weight:850;letter-spacing:.04em;text-decoration:none}.tg{background:#229ed9;color:#fff;text-decoration:none;padding:10px 15px;border-radius:999px;font-weight:700}
+    .hero{margin:24px 0 30px;padding:clamp(25px,6vw,56px);border-radius:28px;background:linear-gradient(120deg,#dff2ed,#fff1d9);overflow:hidden}
+    .eyebrow{color:var(--sea);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}
+    h1{font-size:clamp(2rem,6vw,3.8rem);line-height:1.05;margin:10px 0 16px;max-width:700px}
+    .hero p{max-width:620px;color:var(--muted);font-size:1.1rem}
+    .section-title{margin:34px 0 16px;font-size:1.6rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 8px 28px #183b3a0a}
+    .card .emoji{font-size:2rem}.card h3{margin:10px 0 6px}.card p{color:var(--muted);margin:0 0 16px}
+    .button{display:inline-block;background:var(--sea);color:white;text-decoration:none;padding:11px 17px;border-radius:12px;font-weight:750;border:0;cursor:pointer}
+    .button.secondary{background:var(--sea2);color:var(--ink)}
+    .note{background:#fff;border:1px dashed #cbd9d3;border-radius:18px;padding:18px;color:var(--muted);margin-top:20px}
+    footer{border-top:1px solid var(--line);margin-top:42px;padding:22px 0;color:var(--muted);font-size:.9rem}
+    .tag{display:inline-block;background:#e8f4ee;color:#24665c;border-radius:999px;padding:4px 9px;font-size:.78rem;font-weight:750}
+    @media(max-width:560px){.wrap{padding:16px}header{align-items:flex-start}.tg{font-size:.85rem}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="./">ОТПУСК ВАМ К ЛИЦУ</a>
+    <a class="tg" href="https://t.me/otpuskvamklitsu" target="_blank" rel="noopener">Наш Telegram ↗</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Территория хорошего отдыха</div>
+      <h1>Путешествия начинаются с интереса</h1>
+      <p>Небольшие тесты о поездках, привычках и отпускных приключениях. Выбирай, отвечай и смотри, что получилось.</p>
+      <a class="button" href="#tests">Выбрать тест</a>
+    </section>
+
+    <h2 class="section-title" id="tests">Тесты для путешественников</h2>
+    <section class="grid">
+      <article class="card">
+        <div class="emoji">🧳</div>
+        <span class="tag">Первый тест</span>
+        <h3>Что в отпуске лечит вашу душу?</h3>
+        <p>Семь отпускных ситуаций — и выясним, чего тебе на самом деле хочется от отдыха.</p>
+        <a class="button" href="./tests/otdykh.html">Пройти тест</a>
+      </article>
+      <article class="card">
+        <div class="emoji">🌴</div>
+        <span class="tag">Скоро</span>
+        <h3>А какой ты турист?</h3>
+        <p>Узнай свой стиль путешествий — от охотника за впечатлениями до мастера лежачего отдыха.</p>
+        <span class="button secondary">Готовим</span>
+      </article>
+      <article class="card">
+        <div class="emoji">🏨</div>
+        <span class="tag">В планах</span>
+        <h3>Какой отель тебе подойдёт?</h3>
+        <p>Разберёмся, что для тебя важнее: пляж под боком, тишина, сервис или насыщенная жизнь вокруг.</p>
+        <span class="button secondary">Скоро</span>
+      </article>
+    </section>
+
+    <div class="note">Все тесты развлекательные. Ответы обрабатываются прямо в браузере и не отправляются на сервер. Чтобы вернуться к новым идеям для путешествий, заглядывай в наш Telegram.</div>
+  </main>
+
+  <footer>
+    <a href="https://t.me/otpuskvamklitsu" target="_blank" rel="noopener">Отпуск вам к лицу — Telegram-канал</a>
+  </footer>
+</div>
+</body>
+</html>
