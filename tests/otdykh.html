@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Что в отпуске лечит вашу душу? — Отпуск вам к лицу</title>
+<style>
+:root{--ink:#183b3a;--muted:#58716d;--sea:#167f78;--pale:#e7f3ef;--sand:#fffaf0}
+*{box-sizing:border-box}body{margin:0;background:var(--sand);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+main{max-width:720px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+a{color:inherit}.tg{background:#229ed9;color:white;padding:9px 13px;border-radius:30px;text-decoration:none;font-weight:700}
+.panel{background:white;border:1px solid #e5e9e3;border-radius:24px;padding:clamp(20px,5vw,36px);margin-top:25px}
+h1{font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.1;margin:16px 0}
+.muted{color:var(--muted)}.bar{height:7px;background:#e8eeeb;border-radius:10px;overflow:hidden;margin:18px 0}.fill{height:100%;background:var(--sea);width:0}
+.choice{display:block;width:100%;text-align:left;border:1px solid #dce5e0;background:#fff;border-radius:14px;padding:14px;margin:10px 0;color:var(--ink);font:inherit;cursor:pointer}
+.choice:hover,.choice:focus{border-color:var(--sea);background:var(--pale)}
+.small{font-size:.88rem;color:var(--muted)}.hide{display:none}.button{display:inline-block;border:0;border-radius:12px;background:var(--sea);color:#fff;padding:12px 18px;text-decoration:none;font-weight:750;cursor:pointer}
+</style></head>
+<body><main>
+<div class="top"><a href="../" style="font-weight:850;text-decoration:none">ОТПУСК ВАМ К ЛИЦУ</a><a class="tg" href="https://t.me/otpuskvamklitsu" target="_blank" rel="noopener">В Telegram ↗</a></div>
+<section class="panel" id="intro">
+<div class="small">РАЗВЛЕКАТЕЛЬНЫЙ ТЕСТ · 7 ВОПРОСОВ</div>
+<h1>Что в отпуске лечит вашу душу?</h1>
+<p class="muted">Море, вкусная еда, новые места или право хотя бы неделю ничего не решать? Ответь на вопросы — посмотрим, чего тебе больше всего хочется от отдыха.</p>
+<button class="button" onclick="start()">Начать тест</button>
+</section>
+<section class="panel hide" id="quiz">
+<div class="small" id="count"></div><div class="bar"><div class="fill" id="fill"></div></div>
+<h2 id="question"></h2><div id="answers"></div>
+<p class="small">Выбери один вариант — правильных и неправильных ответов нет.</p>
+</section>
+<section class="panel hide" id="result">
+<div class="small">ТВОЙ РЕЗУЛЬТАТ</div><h1 id="resultTitle"></h1><p class="muted" id="resultText"></p>
+<p><a class="button" href="../">Посмотреть другие тесты</a></p>
+<p><a class="tg" href="https://t.me/otpuskvamklitsu" target="_blank" rel="noopener">Вернуться в Telegram ↗</a></p>
+<button class="button" style="background:#e7f3ef;color:#183b3a;margin-top:12px" onclick="location.reload()">Пройти ещё раз</button>
+</section>
+</main>
+<script>
+// Заготовка механики. Перед публикацией заменим вопросы и результаты точной согласованной редакцией теста.
+const questions = [
+ {q:"Ты заселился в отель. Что первым делом?",a:["Осматриваю номер и иду знакомиться с территорией","Проверяю, где море и ближайший пляж","Ищу ресторан: отпуск сам себя не накормит","Сажусь на балкон и просто выдыхаю"]},
+ {q:"Завтрак в отеле — это…",a:["Важная часть программы, изучу всё меню","Кофе, фрукты и скорее на прогулку","Главное — чтобы было вкусно и без спешки","Можно подольше посидеть, никуда не торопясь"]},
+ {q:"На пляже свободен один лежак…",a:["Рядом с водой — чтобы всё было под контролем","В тени — я приехал отдыхать, а не запекаться","Поближе к бару и перекусам","Подальше от шума и чужих разговоров"]},
+ {q:"Внезапно пошёл тропический ливень. Твоя реакция?",a:["Отлично, будет атмосферное фото","Найду кафе и попробую что-нибудь местное","Пойду есть. Погода погодой, обед по расписанию","Наконец-то законный повод ничего не делать"]},
+ {q:"Предлагают экскурсию на остров. Ты…",a:["Уже смотрю маршрут и что ещё можно увидеть","Соглашусь, если там красивые пляжи","Сначала уточню, будет ли вкусный обед","Подумаю, не лучше ли остаться у бассейна"]},
+ {q:"Выбираешь сувенир домой. Что ближе?",a:["Что-то необычное, с историей этого места","Красивую вещь, которая будет напоминать о море","Местные вкусности — привезу и поделюсь","Небольшую вещицу без долгих поисков"]},
+ {q:"Последний вечер перед вылетом. Что хочется?",a:["Ещё раз пройтись по любимым местам","Устроить красивый ужин у моря","В последний раз заглянуть на шведский стол","Лечь спать и сделать вид, что завтра не улетать"]}
+];
+let current=0, answers=[];
+function start(){document.getElementById('intro').classList.add('hide');document.getElementById('quiz').classList.remove('hide');render()}
+function render(){
+ document.getElementById('count').textContent=`Вопрос ${current+1} из ${questions.length}`;
+ document.getElementById('fill').style.width=`${current/questions.length*100}%`;
+ document.getElementById('question').textContent=questions[current].q;
+ const box=document.getElementById('answers');box.innerHTML='';
+ questions[current].a.forEach((label,i)=>{const b=document.createElement('button');b.className='choice';b.textContent=label;b.onclick=()=>{answers.push(i);current++;if(current<questions.length)render();else finish()};box.appendChild(b)});
+}
+function finish(){
+ document.getElementById('quiz').classList.add('hide');document.getElementById('result').classList.remove('hide');
+ // Draft outcome mapping; replace with the agreed scoring/results before launch.
+ const counts=[0,0,0,0];answers.forEach(x=>counts[x]++);
+ const max=Math.max(...counts), winner=counts.indexOf(max);
+ const outcomes=[
+  ["Охотник за впечатлениями","Тебе важно увидеть, попробовать и увезти с собой целую коллекцию историй. Пляж — прекрасно, но мир за пределами отеля тоже зовёт."],
+  ["Романтик с видом на море","Тебе нужен отпуск, который останется в памяти красивыми моментами: море, прогулки, вкусные ужины и ощущение, что время наконец замедлилось."],
+  ["Инспектор All Inclusive","Ты знаешь цену хорошему отдыху: вкусная еда, удобство и никаких бытовых квестов. Отпуск должен работать на тебя."],
+  ["Профессиональный лежатель","Твоя главная цель — выдохнуть. Без будильников, обязательной программы и героических подвигов. Лежак официально становится рабочим местом."]
+ ];
+ document.getElementById('resultTitle').textContent=outcomes[winner][0];
+ document.getElementById('resultText').textContent=outcomes[winner][1];
+ document.getElementById('fill').style.width='100%';
+}
+</script></body></html>
